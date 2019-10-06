@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import time
 
 from exchanges import BinanceListener, OkexListener
 
@@ -10,7 +11,7 @@ exchanges = [BinanceListener, OkexListener]
 
 
 async def on_changed(exchange, max_bid, min_ask):
-    print(exchange.name, (max_bid + min_ask)/2)
+    print(time.time(), exchange.name, (max_bid + min_ask)/2)
 
 
 async def main():
