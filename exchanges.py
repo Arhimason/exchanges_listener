@@ -6,6 +6,8 @@ import zlib
 
 import aiohttp
 
+from prices_storage import PricesStorage
+
 
 def exceptions_watcher(func):
     async def f(self):
@@ -29,7 +31,7 @@ class AbstractExchangeListener:
         self.on_changed = on_changed
 
         for currency_pair in currency_pairs:
-            self.storage[currency_pair] = {'bid_prices': {}, 'ask_prices': {},
+            self.storage[currency_pair] = {'bid_prices': PricesStorage(), 'ask_prices': PricesStorage(),
                                            'max_bid': None, 'min_ask': None}
 
     def _encode_currency_pair(self, currency_pair):
